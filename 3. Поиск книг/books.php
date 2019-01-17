@@ -2,6 +2,7 @@
     define('URL', 'https://www.googleapis.com/books/v1/volumes?q=');
     if(count($argv) < 2) {
         echo 'Введите название книги.';
+        exit;
     }
     $query = urlencode(trim(implode(' ', array_slice($argv, 1))));
     $request = URL . $query . '&startIndex=0&maxResults=15';
@@ -20,8 +21,8 @@
         } else {
             $book[] = 'NULL';
         }
-    fputcsv($resource, $book);
-}
+        fputcsv($resource, $book);
+    }
 fclose($resource);
   
 ?>
